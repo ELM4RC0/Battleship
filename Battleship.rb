@@ -70,7 +70,7 @@ def init_board
   board
 end
 
-def print_board board
+def print_board(board)
   puts "  0  1  2  3"
   for i in 0..3
     print "#{i}"
@@ -118,14 +118,17 @@ def mark_position playerBoard, coord, vector, boats
   end 
 end
 
-def init_attack player_name, boardattack
+def init_attack player_name, boardattack,
   attackPlayer = player_name 
   print_board(boardattack)
   return boardattack
 
 end
 
+
+
 =begin
+  
 def boardattack board
   puts "  0  1  2  3"
   for i in 0..3
@@ -138,7 +141,6 @@ def boardattack board
   
 end
 =end
-
 
 def attackPlayer boardattack, print_board, coord, player_board, 
 
@@ -179,7 +181,7 @@ def attackPlayer boardattack, print_board, coord, player_board,
   end
 end
    
-def game player1_name, player2_name, 
+def game player1_name, player2_name
   
   player_board = init_board()
   init_boats(player_board, player1_name)
@@ -187,11 +189,12 @@ def game player1_name, player2_name,
   player2_board = init_board()
   init_boats(player2_board, player2_name)
 
-  attackPlayer = init_attack(attackPlayer, boardattack(board))
+  attackPlayer = init_attack(attackPlayer, print_board)
   init_attack attackPlayer, player1_name
 
-  attackPlayer = init_attack(attackPlayer, boardattack(board))
+  attackPlayer = init_attack(attackPlayer, print_board)
   init_attack attackPlayer, player2_name
+
 
 end
 
@@ -210,6 +213,9 @@ def check_winner attackPlayer,board_attack, player_name
   end
   sw = check_winner | attackPlayer
 end
+
+
+
 
 def main()
 
