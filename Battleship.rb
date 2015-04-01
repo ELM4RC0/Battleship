@@ -87,12 +87,12 @@ def init_boats board, player_name
   for i in 0..boats.length - 1
     sw = false
     while sw == false 
-      print_board(board)
       coord = ask_coordinate( player_name, boats[i])
       vector = ask_orientation(player_name, boats[i])
       sw = check_position(board, coord, vector, boats[i])
     end 
     mark_position(board, coord, vector, boats[i])
+    print_board(board)
   end
 end 
 
@@ -179,7 +179,7 @@ def attackPlayer boardattack, print_board, coord, player_board,
   end
 end
    
-def game player1_name, player2_name
+def game player1_name, player2_name, 
   
   player_board = init_board()
   init_boats(player_board, player1_name)
@@ -187,12 +187,11 @@ def game player1_name, player2_name
   player2_board = init_board()
   init_boats(player2_board, player2_name)
 
-  attackPlayer = init_attack(attackPlayer, boardattack)
+  attackPlayer = init_attack(attackPlayer, boardattack(board))
   init_attack attackPlayer, player1_name
 
-  attackPlayer = init_attack(attackPlayer, boardattack)
+  attackPlayer = init_attack(attackPlayer, boardattack(board))
   init_attack attackPlayer, player2_name
-
 
 end
 
@@ -211,9 +210,6 @@ def check_winner attackPlayer,board_attack, player_name
   end
   sw = check_winner | attackPlayer
 end
-
-
-
 
 def main()
 
